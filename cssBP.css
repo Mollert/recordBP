@@ -1,0 +1,121 @@
+
+@font-face {
+	src: url(./font/OregonLDOBoldOblique.ttf);
+	font-family: OBO;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+#holder {
+	margin: 0 5vw;
+	background-color: mediumspringgreen;
+	font-family: OBO;
+}
+
+#greeting {
+	text-align: center;
+	font-size: 1.6rem;
+	padding: 2rem 0;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: row;
+/*	align-items: center;*/
+	justify-content: center;
+	height: 5rem;
+}
+
+.flexColumn {
+	display: flex;
+	flex-direction: column;
+	margin: 0 2rem;
+}
+
+img {
+	height: 4rem;
+	width: auto;
+}
+
+#slash {
+	height: 1.8rem;
+	width: auto;
+	margin-top: 0.0rem;
+}
+/*
+#heart {
+	animation-name: beat;
+	animation-duration: 1.8s;
+	animation-delay: 0.2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes beat {
+	0% {
+		transform: scale(1);		
+	}
+	50% {
+		transform: scale(1.3);
+	}
+	100%{
+		transform: scale(1);		
+	}
+}
+*/
+input {
+	width: 4rem;
+	height: 1.6rem;
+	text-align: center;
+	border-radius: 0.3rem;
+	font-size: 1.4rem;
+	font-weight: bold;
+}
+
+label {
+	font-size: 1.4rem;
+}
+
+#submit,
+#clear {
+	width: 8rem;
+	height: 3rem;
+	font-size: 1.2rem;	
+	background-color: gold;
+	color: blue;
+}
+
+.button {
+	margin: 0 1rem;
+}
+
+
+#message {
+	height: 4.6rem;
+	width: auto;
+}
+
+#valMessage {
+	text-align: center;
+	font-size: 1.6rem;
+}
+
+
+
+
+
+
+#theTime {
+	margin-left: 8rem;	
+	font-size: 3rem;
+}
+
+
+
+/*
+@media screen and (max-width: 460px) {
+
+}
+*/

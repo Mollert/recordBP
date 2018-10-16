@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Record your Blood Pressure</title>
+
+	<meta name="description" content="Website records and tracks personal blood pressure, heart rate and body weight.">
+	
+	<link rel="icon" href="image/faviconHeart.ico" type="image/ico"/>
+
+	<link rel="stylesheet" type="text/css" href="cssBP.css">
+	
+</head>
+<body>
+	<div id="holder">
+		<div id="greeting">
+			<div id="theTimeOfDay"></div>
+			<div id="theDate"></div>
+		</div>
+
+		<form id="userData"> <!-- action="catchForm.html" method="POST">  -->
+			<div class="flexRow">
+				<div class="flexColumn">
+					<label for="systolic">Blood Pressure:</label>
+					<div class="flexRow">
+						<input type="text" id="systolic" oninput="sysCheck()" name="systolic">
+						<img id="slash" src="./image/slashLine.png" alt="Line between BP"/>
+						<input type="text" id="diastolic" oninput="diaCheck()" name="diastolic">
+					</div>
+				</div>
+				<img src="./image/bpPump.png" alt="Arm gauge for BP"/>
+			</div>
+			<div class="flexRow">
+				<img id="heart" src="./image/heart.png" alt="Pumping heart"/>
+				<div class="flexColumn">
+					<label for="hRate">Heart Rate:</label>
+					<input type="text" id="hRate" oninput="hRtCheck()" name="hRate">
+				</div>
+			</div>		
+			<div class="flexRow">
+				<div class="flexColumn">
+					<label for="weight">Body Weight:</label>
+					<input type="text" id="weight" oninput="wghtCheck()" name="weight">
+				</div>
+				<img src="./image/scale.png" alt="Weight Scale"/>
+			</div>
+			<div class="flexRow">
+				<div class="button">
+					<input type="submit" id="submit" value="SUBMIT">
+				</div>
+				<div class="button">
+					<input type="reset" id="clear" value="CLEAR">
+				</div>
+			</div>
+		</form>
+		
+		<div id="message">
+			<div id="valMessage"></div>
+		</div>		
+	</div>
+
+<!--
+	<br>
+	<div id="theTime"></div>
+-->	
+	<script src="javascriptBPtime.js"></script>
+	<script src="javascriptBPinput.js"></script>	
+	<script src="javascriptBPvalidate.js"></script>
+<!--	<script src="javascriptBPchart.js"></script>  -->
+	
+</body>
+</html>

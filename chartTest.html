@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+
+	<title>Charting with HTML</title>
+
+	<style>
+		#userData {
+			margin: 3rem; font-size: 1.2rem;}
+		.entry {
+			margin-top: 1rem;}
+		.stateBox {
+			margin-right: 1rem;
+			width: 8rem;}
+		.yearBox {
+			width: 4rem;}
+		.stateBox,
+		.yearBox {
+			padding: .6rem;}		
+		#capture {
+			margin: 2rem;}
+		#submit {
+			padding: .6rem 1.4rem; font-size: 1rem; border-radius: 0.4rem;}
+	</style>
+
+</head>
+<body>
+
+	<form id="userData">
+		<div class="entry">
+			<label for="state1">State:</label>
+			<input type="text" id="state1" class="stateBox inTheBox" name="state1">
+			<label for="date1">Joined the Union:</label>
+			<input type="number" id="year1" class="yearBox inTheBox" name="year1">
+		</div>
+		<div class="entry">
+			<label for="state2">State:</label>
+			<input type="text" id="state2" class="stateBox inTheBox" name="state2">
+			<label for="date2">Joined the Union:</label>
+			<input type="number" id="year2" class="yearBox inTheBox" name="year2">
+		</div>
+		<div class="entry">
+			<label for="state3">State:</label>
+			<input type="text" id="state3" class="stateBox inTheBox" name="state3">
+			<label for="date3">Joined the Union:</label>
+			<input type="number" id="year3" class="yearBox inTheBox" name="year3">
+		</div>
+		<div class="entry">
+			<label for="state4">State:</label>
+			<input type="text" id="state4" class="stateBox inTheBox" name="state4">
+			<label for="date4">Joined the Union:</label>
+			<input type="number" id="year4" class="yearBox inTheBox" name="year4">
+		</div>
+		<div class="entry">
+			<label for="state5">State:</label>
+			<input type="text" id="state5" class="stateBox inTheBox" name="state5">
+			<label for="date5">Joined the Union:</label>
+			<input type="number" id="year5" class="yearBox inTheBox" name="year5">
+		</div>
+		<div class="entry">
+			<label for="state6">State:</label>
+			<input type="text" id="state6" class="stateBox inTheBox" name="state6">
+			<label for="date6">Joined the Union:</label>
+			<input type="number" id="year6" class="yearBox inTheBox" name="year6">
+		</div>
+		<div id="capture">
+			<input type="submit" id="submit" value="Submit">
+		</div>
+	</form>
+
+	<canvas id="bpChart"></canvas>
+
+	<script>
+
+		document.getElementById("submit").addEventListener("click", function() {
+			event.preventDefault();
+			console.log("This is grabbing something");
+/*			let stateGroup = [];
+			for (let i = 0 ; i < 6 ; i++) {
+				let what = "state" + (i + 1);
+				let stateData = document.getElementById(what).value;
+				stateGroup.push(stateData);
+			}
+			console.log(stateGroup);
+*/		
+//			let stateData = document.querySelectorAll("input");
+//			let yearData = document.getElementById("year1").value;
+//			console.log(stateData + ":" + yearData);
+//			let make = stateData[2].value;
+//			console.log(stateData);
+//			console.log(make);
+			let stateGroup = [];
+			let yearGroup = [];
+			let allData = document.getElementsByClassName("inTheBox");
+			for (let i = 2 ; i < 14 ; i++) {
+
+				if ( i % 2 === 0 ) {
+					stateGroup.push(allData[i-2].value);	
+				} else {
+					yearGroup.push(allData[i-2].value);						
+				}
+			}
+			console.log(allData);						
+			console.log(stateGroup);
+			console.log(yearGroup);
+
+			let ctx = document.getElementById('bpChart').getContext('2d');
+			let chart = new Chart(ctx, {
+			    // The type of chart we want to create
+				type: 'line',
+			    // The data for our dataset
+			    data: {
+/*					labels: ["January", "February", "March", "April", "May", "June", "July"],
+		      	  datasets: [{
+		     	       label: "My First dataset",
+		     	       backgroundColor: 'rgb(255, 99, 132)',
+ 		     	      	borderColor: 'rgb(255, 99, 132)',
+ 		     	     	data: [0, 10, 5, 2, 20, 30, 45],
+	        		}]
+*/
+					labels: stateGroup,
+					datasets: [{
+						label: "Years these states joined the union.",
+						data: yearGroup
+					}]
+ 				},
+		  	  // Configuration options go here
+ 				options: {}
+			});
+		});
+
+	</script>
+
+</body>
+</html>
