@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,56 +9,89 @@
 	
 	<link rel="icon" href="image/faviconHeart.ico" type="image/ico"/>
 
-	<link rel="stylesheet" type="text/css" href="cssBP.css">
+	<link rel="stylesheet" type="text/css" href="cssBPentry.css">
+	<link rel="stylesheet" type="text/css" href="cssBPselection.css">
 	
 </head>
 <body>
 	<div id="holder">
-		<div id="greeting">
-			<div id="theTimeOfDay"></div>
-			<div id="theDate"></div>
-		</div>
+		<div id="entryArea">
+			<div id="greeting">
+				<div id="theTimeOfDay"></div>
+				<div id="theDate"></div>
+			</div>
 
-		<form id="userData"> <!-- action="catchForm.html" method="POST">  -->
-			<div class="flexRow">
-				<div class="flexColumn">
-					<label for="systolic">Blood Pressure:</label>
-					<div class="flexRow">
-						<input type="text" id="systolic" oninput="sysCheck()" name="systolic">
-						<img id="slash" src="./image/slashLine.png" alt="Line between BP"/>
-						<input type="text" id="diastolic" oninput="diaCheck()" name="diastolic">
+			<form id="userData"> <!-- action="catchForm.html" method="POST">  -->
+				<div class="flexRowEntry">
+					<div class="flexColumnEntry">
+						<label for="systolic" class="entry">Blood Pressure:</label>
+						<div class="flexRowEntry">
+							<input type="text" id="systolic" class="entry" oninput="sysCheck()" name="systolic">
+							<img id="slash" src="./image/slashLine.png" alt="Line between BP"/>
+							<input type="text" id="diastolic" class="entry" oninput="diaCheck()" name="diastolic">
+						</div>
+					</div>
+					<img src="./image/bpPump.png" alt="Arm gauge for BP"/>
+				</div>
+				<div class="flexRowEntry">
+					<img id="heart" src="./image/heart.png" alt="Pumping heart"/>
+					<div class="flexColumnEntry">
+						<label for="hRate" class="entry">Heart Rate:</label>
+						<input type="text" id="hRate" class="entry" oninput="hRtCheck()" name="hRate">
+					</div>
+				</div>		
+				<div class="flexRowEntry">
+					<div class="flexColumnEntry">
+						<label for="weight" class="entry">Body Weight:</label>
+						<input type="text" id="weight" class="entry" oninput="wghtCheck()" name="weight">
+					</div>
+					<img src="./image/scale.png" alt="Weight Scale"/>
+				</div>
+				<div class="flexRowEntry">
+					<div class="buttonEntry">
+						<input type="submit" id="submit" class="entry" value="SUBMIT">
+					</div>
+					<div class="buttonEntry">
+						<input type="reset" id="clear" class="entry" value="CLEAR">
 					</div>
 				</div>
-				<img src="./image/bpPump.png" alt="Arm gauge for BP"/>
+			</form>
+			
+			<div id="message">
+				<div id="valMessage"></div>
 			</div>
-			<div class="flexRow">
-				<img id="heart" src="./image/heart.png" alt="Pumping heart"/>
-				<div class="flexColumn">
-					<label for="hRate">Heart Rate:</label>
-					<input type="text" id="hRate" oninput="hRtCheck()" name="hRate">
-				</div>
-			</div>		
-			<div class="flexRow">
-				<div class="flexColumn">
-					<label for="weight">Body Weight:</label>
-					<input type="text" id="weight" oninput="wghtCheck()" name="weight">
-				</div>
-				<img src="./image/scale.png" alt="Weight Scale"/>
+		</div>
+		<div id="selectionArea">
+			<div id="selectionInstructions">
+				<div class="instructLine">Pick which of the three items you would like to review and then click on the length of time.</div>
+				<div class="instructLine">The chart will appear below.</div>
 			</div>
-			<div class="flexRow">
-				<div class="button">
-					<input type="submit" id="submit" value="SUBMIT">
+			<form id="whichSelection"> <!-- action="catchForm.html" method="POST">  -->
+				<div class="flexRowSelection">
+					<input type="radio" id="bpRadio" class="radio select" name="selection" value="bp">
+					<label for="bpRadio" class="radio tag">Blood Pressure</label>
+					<input type="radio" id="hrRadio" class="radio select" name="selection" value="hr" checked="checked">
+					<label for="hrRadio" class="radio tag">Heart Rate</label>
+					<input type="radio" id="wtRadio" class="radio select" name="selection" value="wt">
+					<label for="wtRadio" class="radio">Weight</label>
 				</div>
-				<div class="button">
-					<input type="reset" id="clear" value="CLEAR">
-				</div>
-			</div>
-		</form>
-		
-		<div id="message">
-			<div id="valMessage"></div>
+				<div class="flexRowSelection button">
+					<div class="buttonSelection">
+						<input type="submit" id="selectionBP" class="selection" value="Past Week">
+					</div>
+					<div class="buttonSelection">
+						<input type="submit" id="selectionHR" class="selection" value="Past Month">
+					</div>
+					<div class="buttonSelection">
+						<input type="submit" id="selectionWT" class="selection" value="Six Months">
+					</div>
+				</div>	
+			</form>
+		</div>
+		<div id="chartArea">
 		</div>		
 	</div>
+
 
 <!--
 	<br>

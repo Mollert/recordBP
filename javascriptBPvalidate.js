@@ -60,7 +60,3 @@
 		document.getElementById("userData").reset();
 		document.getElementById("valMessage").innerHTML = "";
 	});	
-	
-	
-	
-	

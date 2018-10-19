@@ -1,0 +1,64 @@
+
+#selectionArea {
+	background-color: lightgray;	
+}
+
+#selectionInstructions {
+	text-align: center;
+	font-size: 1.4rem;
+	padding: 2rem 0;
+}
+
+.flexRowSelection {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 2rem;	
+}
+
+.flexRowSelection.button{
+	padding-top: 1rem;
+	padding-bottom: 4rem;
+}
+
+input.radio {
+	height: 1.2rem;
+	width: 1.2rem;
+	margin: 0.2rem 0 0 0;
+}
+
+label.radio {
+	font-size: 1.4rem;
+	margin-left: 0.6rem;
+	color: green;
+}
+
+label.radio.tag {
+	margin-right: 3rem;
+}
+
+#selectionBP,
+#selectionHR,
+#selectionWT {
+	width: 10rem;
+	height: 3rem;
+	font-size: 1.2rem;
+	background-color: gold;
+	border-radius: 0.3rem;
+	color: blue;
+	font-weight: bold;
+}
+
+.buttonSelection {
+	margin: 0 2.4rem;
+}
+
+
+
+
+
+/*
+@media screen and (max-width: 460px) {
+
+}
+*/
