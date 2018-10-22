@@ -1,11 +1,22 @@
 
 #selectionArea {
-	background-color: lightgray;	
+	background-color: moccasin;
 }
 
-#selectionInstructions {
+.instruction {
 	text-align: center;
 	font-size: 1.4rem;
+}
+
+.topLine {
+	padding: 2rem 0 1.4rem 0;
+}
+
+.middleLine {
+	padding-bottom: 1rem;
+}
+
+.bottomLine {
 	padding: 2rem 0;
 }
 
@@ -13,12 +24,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	height: 2rem;	
-}
-
-.flexRowSelection.button{
-	padding-top: 1rem;
-	padding-bottom: 4rem;
+	height: 2rem;
+	margin-bottom: 1rem;
 }
 
 input.radio {
@@ -30,22 +37,20 @@ input.radio {
 label.radio {
 	font-size: 1.4rem;
 	margin-left: 0.6rem;
-	color: green;
+	color: firebrick;
 }
 
 label.radio.tag {
 	margin-right: 3rem;
 }
 
-#selectionBP,
-#selectionHR,
-#selectionWT {
+.selection {
 	width: 10rem;
 	height: 3rem;
 	font-size: 1.2rem;
-	background-color: gold;
+	background-color: orange;
 	border-radius: 0.3rem;
-	color: blue;
+	color: firebrick;
 	font-weight: bold;
 }
 
@@ -54,7 +59,11 @@ label.radio.tag {
 }
 
 
-
+#chartArea {
+	background-color: whitesmoke;
+	width: 100%;
+	display: none;
+}
 
 
 /*
