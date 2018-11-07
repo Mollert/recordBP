@@ -1,0 +1,94 @@
+
+#selectionArea {
+	background-color: moccasin;
+}
+
+.instruction {
+	text-align: center;
+	font-size: 1.4rem;
+}
+
+.topLine {
+	padding: 2rem 0 1.4rem 0;
+}
+
+.middleLine,
+.bottomLine {
+	padding-bottom: 1rem;
+}
+
+.flexRowSelection {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	height: 2rem;
+	margin-bottom: 1rem;
+}
+
+input.radio {
+	height: 1.2rem;
+	width: 1.2rem;
+	margin: 0.2rem 0 0 0;
+}
+
+label.radio {
+	font-size: 1.4rem;
+	margin-left: 0.6rem;
+	color: firebrick;
+}
+
+label.radio.tag {
+	margin-right: 3rem;
+}
+
+.buttonSelection {
+	margin: 0 2.4rem;
+}
+
+.bottom {
+	padding-bottom: 2.4rem;
+	margin-bottom: 0;
+}
+
+.selection {
+	width: 10rem;
+	height: 3rem;
+	font-size: 1.2rem;
+	background-color: orange;
+	border-radius: 0.3rem;
+	color: firebrick;
+	font-weight: bold;
+}
+
+#getButton,
+#resetButton {
+	background-color: moccasin;
+	padding-bottom: 1.4rem;
+}
+
+.hidingButton {
+	width: 14rem;
+	height: 3rem;
+	font-size: 1.2rem;
+	background-color: sienna;
+	border-radius: 0.3rem;
+	color: bisque;
+	font-weight: bold;
+}
+
+#hiddenArea {
+	display: none;
+}
+
+#chartArea {
+	background-color: honeydew;
+	width: 100%;
+	display: none;
+}
+
+
+/*
+@media screen and (max-width: 460px) {
+
+}
+*/

@@ -1,0 +1,29 @@
+{
+  "name": "recordbp",
+  "version": "1.0.0",
+  "description": "A way to track your blood pressure, heart rate, and weight then showing them charted.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mollert/recordBP.git"
+  },
+  "author": "David Mollert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mollert/recordBP/issues"
+  },
+  "homepage": "https://github.com/Mollert/recordBP#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0",
+    "path": "^0.12.7",
+    "request": "^2.88.0"
+  }
+}

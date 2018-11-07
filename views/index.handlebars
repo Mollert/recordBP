@@ -1,0 +1,109 @@
+
+	<div id="holder">
+		<div id="entryArea">
+			<div id="greeting">
+				<div id="theTimeOfDay">Good {{greet.periodOfDay}}, Ruth.</div>
+				<div id="theDate">Today is {{greet.day}} the {{greet.dayOfMonth}}{{greet.end}} of {{greet.month}}.</div>
+			</div>
+
+			<form id="userData" action="/saveData" method="POST">
+				<div class="flexRowEntry">
+					<div class="flexColumnEntry">
+						<label for="systolic" class="entry">Blood Pressure:</label>
+						<div class="flexRowEntry">
+							<input type="text" id="systolic" class="entry" oninput="sysCheck()" name="systolic">
+							<img id="slash" src="./image/slashLine.png" alt="Line between BP"/>
+							<input type="text" id="diastolic" class="entry" oninput="diaCheck()" name="diastolic">
+						</div>
+					</div>
+					<img src="./image/bpPump.png" alt="Arm gauge for BP"/>
+				</div>
+				<div class="flexRowEntry">
+					<img id="heart" src="./image/heart.png" alt="Pumping heart"/>
+					<div class="flexColumnEntry">
+						<label for="hRate" class="entry">Heart Rate:</label>
+						<input type="text" id="hRate" class="entry" oninput="hRtCheck()" name="hRate">
+					</div>
+				</div>		
+				<div class="flexRowEntry">
+					<div class="flexColumnEntry">
+						<label for="weight" class="entry">Body Weight:</label>
+						<input type="text" id="weight" class="entry" oninput="wghtCheck()" name="weight">
+					</div>
+					<img src="./image/scale.png" alt="Weight Scale"/>
+				</div>
+				<div class="flexRowEntry">
+					<div class="buttonEntry">
+						<input type="submit" id="submit" class="entry" value="SUBMIT">
+					</div>
+					<div class="buttonEntry">
+						<input type="reset" id="clear" class="entry" value="CLEAR">
+					</div>
+				</div>
+			</form>
+			
+			<div id="message">
+				<div id="valMessage">{{addEntries.theMessage}}</div>
+			</div>
+		</div>
+		<div id="selectionArea">
+			<div class="instruction topLine">Pick which of the three items you would like to review.</div>
+			<form id="whichSelection" action="/displayChart" method="GET">
+				<div class="flexRowSelection">
+					<input type="radio" id="bpRadio" class="radio select" name="selectionType" value="bp">
+					<label for="bpRadio" class="radio tag">Blood Pressure</label>
+					<input type="radio" id="hrRadio" class="radio select" name="selectionType" value="hr" checked="checked">
+					<label for="hrRadio" class="radio tag">Heart Rate</label>
+					<input type="radio" id="wtRadio" class="radio select" name="selectionType" value="wt">
+					<label for="wtRadio" class="radio">Weight</label>
+				</div>
+				<div class="instruction middleLine">Change to a new time of day if you would like.</div>				
+				<div class="flexRowSelection">
+					<input type="radio" id="adRadio" class="radio select" name="selectionTime" value="ad" checked="checked">
+					<label for="adRadio" class="radio tag">All Day</label>
+					<input type="radio" id="amRadio" class="radio select" name="selectionTime" value="am">
+					<label for="amRadio" class="radio tag">AM</label>
+					<input type="radio" id="pmRadio" class="radio select" name="selectionTime" value="pm">
+					<label for="pmRadio" class="radio">PM</label>
+				</div>
+				<div class="instruction bottomLine">Now click on which time period you would like to see.</div>				
+				<div class="flexRowSelection bottom">
+					<div class="buttonSelection">
+						<input type="submit" id="selectionBP" name="chartDuration" class="selection" value="Past Week">
+					</div>
+					<div class="buttonSelection">
+						<input type="submit" id="selectionHR" name="chartDuration" class="selection" value="Past Month">
+					</div>
+					<div class="buttonSelection">
+						<input type="submit" id="selectionWT" name="chartDuration" class="selection" value="Six Months">
+					</div>
+				</div>
+			</form>
+		</div>		
+
+		<div id="getButton" style="display:{{populate.goget}}">
+			<div class="flexRowSelection">
+				<div class="buttonSelection">
+					<input type="submit" id="captureData" class="hidingButton" value="Click To See Chart">
+				</div>
+			</div>
+		</div>
+		<div id="resetButton" style="display:{{populate.reset}}">
+			<div class="flexRowSelection">			
+				<form action="/" method="GET">
+					<div class="buttonSelection">
+						<input type="submit" class="hidingButton" value="Reset To Home">
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div id="hiddenArea">
+			<div id="theLabels">{{populate.labels}}</div>
+			<div id="theData">{{populate.data}}</div>
+			<div id="theLabel">{{populate.label}}</div>			
+		</div>
+
+		<canvas id="chartArea"></canvas>
+
+	</div>

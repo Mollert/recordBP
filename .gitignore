@@ -1,2 +1,6 @@
 node_modules
 .DS_Store
+
+
+#Ignore individual html pages I created prior to building a handlebars site
+#As an example - views/layouts/beta
