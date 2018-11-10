@@ -4,38 +4,100 @@ const request = require("request");
 const router = express.Router();
 
 let greet = require("../public/javascript/postToday.js");
+const vitals = require("../chartData/vitals.js")
+
+let xAxis = [];
+let yAxis = [];
+
+const monthsAbbrev = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+const convertDate = (base) => {
+	let convertMonth = base.slice(5, 7);
+	(convertMonth.charAt(0) === "0") ? convertMonth = convertMonth.charAt(1) : convertMonth
+	let convertDay = base.slice(8, 10);
+	(convertDay.charAt(0) === "0") ? convertDay = convertDay.charAt(1) : convertDay
+	return (`${monthsAbbrev[convertMonth-1]} ${convertDay}`);
+}
+
+const isAmPm = (tally) => {
+	let grabAmPm = tally.slice(11, 13);
+	(grabAmPm.charAt(0) === "0") ? grabAmPm = grabAmPm.charAt(1) : grabAmPm	
+	grabAmPm = Number(grabAmPm);
+	if (grabAmPm < 12) {
+		return "am";
+	} else {
+		return "pm";
+	}
+}
+
+const loadUpArrays = (subject, ele) => {
+	let date = convertDate(vitals[ele].date);
+	xAxis.push(date);
+	if (subject === "sy") {
+		yAxis.push(vitals[ele].systolic);
+	} else if (subject === "di") {
+		yAxis.push(vitals[ele].diastolic);		
+	} else if (subject === "hr") {
+		yAxis.push(vitals[ele].heartRate);
+	} else if (subject === "wt") {
+		yAxis.push(vitals[ele].weight);
+	}	
+}
 
 // Retrieve data from database and display send to html
-router.get("/displayChart", (req, res) => {
-//	console.log(req.body);
-/*
-	const topHalf = {
-		"labels": ["4/18", "4/19", "4/21", "4/22", "4/22", "4/24"],
-		"data": ["126", "110", "112", "138", "147", "118"]
+router.post("/displayChart", (req, res) => {
+
+	const chartSub = req.body.chartSubject;
+	const chartTime = req.body.chartTime;	
+	const chartDur = req.body.chartDuration;
+
+	xAxis = [];
+	yAxis = [];
+	let label = "";
+	let howLong = 0;
+
+	if (chartDur === "Past Week") {
+		howLong = 7;
+	} else if (chartDur === "Past 2 Weeks") {
+		howLong = 14;
+	} else if (chartDur === "Past 3 Weeks") {
+		howLong = 21;
 	}
 
-	const botHalf = {
-		"labels": ["2/27", "2/28", "3/2", "3/2", "3/3", "3/5", "3/10", "3/12"],
-		"data": ["88", "90", "72", "80", "68", "96", "77", "74"]
+	for ( let i = 0 ; i < howLong ; i++ ) {
+		if (chartTime === "ad") {			
+			loadUpArrays(chartSub, i);
+		} else if (chartTime === "am") {
+			let onlyAm = isAmPm(vitals[i].date);
+			if (onlyAm === "am") {
+				loadUpArrays(chartSub, i);
+			}
+		} else if (chartTime === "pm") {
+			let onlyPm = isAmPm(vitals[i].date);
+			if (onlyPm === "pm") {
+				loadUpArrays(chartSub, i);
+			}
+		}
 	}
 
-	const hRate = {
-		"labels": ["5/23", "5/24", "5/29", "6/1"],
-		"data": ["88", "90", "72", "80"]
-*/
+	if (chartSub === "sy") {
+		label = "Systolic BP";
+	} else if (chartSub === "di") {
+		label = "Diastolic BP";	
+	} else if (chartSub === "hr") {
+		label = "Heart Rate";
+	} else if (chartSub === "wt") {
+		label = "Weight";
+	}
+
 	let populate = {
-		"labels": ["8/9", "8/10", "8/14", "8/14", "8/15", "8/16", "8/16", "8/18", "8/20", "8/21"],
-		"data": ["132.8", "133.0", "134.5", "136.2", "132.1", "135.8", "133.7", "135", "134.4", "139"],
-		"label": "Weight",
+		"labels": xAxis,
+		"data": yAxis,
+		"label": label,
 		"goget": "block",
 		"reset": "none"
-	}
-/*
-	const heft = {
-		"labels": ["8/9", "8/10", "8/14", "8/14", "8/15", "8/16", "8/16", "8/18", "8/20", "8/21"],
-		"data": ["132.8", "133.0", "134.5", "136.2", "132.1", "135.8", "133.7", "135", "134.4", "139"]
-	}
-*/
+	};
+
 	res.render("index", {greet, populate});
 });
 

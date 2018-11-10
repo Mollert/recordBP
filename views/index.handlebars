@@ -47,35 +47,37 @@
 			</div>
 		</div>
 		<div id="selectionArea">
-			<div class="instruction topLine">Pick which of the three items you would like to review.</div>
-			<form id="whichSelection" action="/displayChart" method="GET">
+			<div class="instruction topLine">Pick which of the four items you would like to review.</div>
+			<form id="whichSelection" action="/displayChart" method="POST">
 				<div class="flexRowSelection">
-					<input type="radio" id="bpRadio" class="radio select" name="selectionType" value="bp">
-					<label for="bpRadio" class="radio tag">Blood Pressure</label>
-					<input type="radio" id="hrRadio" class="radio select" name="selectionType" value="hr" checked="checked">
+					<input type="radio" id="syRadio" class="radio select" name="chartSubject" value="sy">
+					<label for="syRadio" class="radio tag">Systolic BP</label>
+					<input type="radio" id="diRadio" class="radio select" name="chartSubject" value="di">
+					<label for="diRadio" class="radio tag">Diastolic BP</label>					
+					<input type="radio" id="hrRadio" class="radio select" name="chartSubject" value="hr" checked="checked">
 					<label for="hrRadio" class="radio tag">Heart Rate</label>
-					<input type="radio" id="wtRadio" class="radio select" name="selectionType" value="wt">
+					<input type="radio" id="wtRadio" class="radio select" name="chartSubject" value="wt">
 					<label for="wtRadio" class="radio">Weight</label>
 				</div>
 				<div class="instruction middleLine">Change to a new time of day if you would like.</div>				
 				<div class="flexRowSelection">
-					<input type="radio" id="adRadio" class="radio select" name="selectionTime" value="ad" checked="checked">
+					<input type="radio" id="adRadio" class="radio select" name="chartTime" value="ad" checked="checked">
 					<label for="adRadio" class="radio tag">All Day</label>
-					<input type="radio" id="amRadio" class="radio select" name="selectionTime" value="am">
+					<input type="radio" id="amRadio" class="radio select" name="chartTime" value="am">
 					<label for="amRadio" class="radio tag">AM</label>
-					<input type="radio" id="pmRadio" class="radio select" name="selectionTime" value="pm">
+					<input type="radio" id="pmRadio" class="radio select" name="chartTime" value="pm">
 					<label for="pmRadio" class="radio">PM</label>
 				</div>
 				<div class="instruction bottomLine">Now click on which time period you would like to see.</div>				
 				<div class="flexRowSelection bottom">
 					<div class="buttonSelection">
-						<input type="submit" id="selectionBP" name="chartDuration" class="selection" value="Past Week">
+						<input type="submit" name="chartDuration" class="selection" value="Past Week">
 					</div>
 					<div class="buttonSelection">
-						<input type="submit" id="selectionHR" name="chartDuration" class="selection" value="Past Month">
+						<input type="submit" name="chartDuration" class="selection" value="Past 2 Weeks">
 					</div>
 					<div class="buttonSelection">
-						<input type="submit" id="selectionWT" name="chartDuration" class="selection" value="Six Months">
+						<input type="submit" name="chartDuration" class="selection" value="Past 3 Weeks">
 					</div>
 				</div>
 			</form>
