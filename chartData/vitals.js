@@ -1,4 +1,6 @@
 
+// Sample data that was generated to simulate a database.
+// This quickly allows me to see how the site functions
 const vitals = [
 	{
 		"date": "2018-04-06 06:54:25",

@@ -6,11 +6,14 @@ const router = express.Router();
 let greet = require("../public/javascript/postToday.js");
 const vitals = require("../chartData/vitals.js")
 
+// Instantiates the chart axis arrays 
 let xAxis = [];
 let yAxis = [];
 
+// This array provides the abbreviated months for the charts x axis
 const monthsAbbrev = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
+// Separates the date from the "time stamp" them translates it to an abbreviated month space day
 const convertDate = (base) => {
 	let convertMonth = base.slice(5, 7);
 	(convertMonth.charAt(0) === "0") ? convertMonth = convertMonth.charAt(1) : convertMonth
@@ -19,6 +22,7 @@ const convertDate = (base) => {
 	return (`${monthsAbbrev[convertMonth-1]} ${convertDay}`);
 }
 
+// Checks the "time stamp" and returns either AM or PM 
 const isAmPm = (tally) => {
 	let grabAmPm = tally.slice(11, 13);
 	(grabAmPm.charAt(0) === "0") ? grabAmPm = grabAmPm.charAt(1) : grabAmPm	
@@ -30,6 +34,7 @@ const isAmPm = (tally) => {
 	}
 }
 
+// Given one of the four topics and which entry, it adds the date and data into arrays
 const loadUpArrays = (subject, ele) => {
 	let date = convertDate(vitals[ele].date);
 	xAxis.push(date);
@@ -46,7 +51,7 @@ const loadUpArrays = (subject, ele) => {
 
 // Retrieve data from database and display send to html
 router.post("/displayChart", (req, res) => {
-
+	// These are the result of the chocies made on the website
 	const chartSub = req.body.chartSubject;
 	const chartTime = req.body.chartTime;	
 	const chartDur = req.body.chartDuration;
@@ -55,7 +60,7 @@ router.post("/displayChart", (req, res) => {
 	yAxis = [];
 	let label = "";
 	let howLong = 0;
-
+	// Finds the length of time the user wants to see data
 	if (chartDur === "Past Week") {
 		howLong = 7;
 	} else if (chartDur === "Past 2 Weeks") {
@@ -63,7 +68,7 @@ router.post("/displayChart", (req, res) => {
 	} else if (chartDur === "Past 3 Weeks") {
 		howLong = 21;
 	}
-
+	//  Main loop.  Looping through to check for valid data
 	for ( let i = 0 ; i < howLong ; i++ ) {
 		if (chartTime === "ad") {			
 			loadUpArrays(chartSub, i);
@@ -79,7 +84,7 @@ router.post("/displayChart", (req, res) => {
 			}
 		}
 	}
-
+	// Creates the label on the chart (along with average)
 	if (chartSub === "sy") {
 		label = "Systolic BP";
 	} else if (chartSub === "di") {

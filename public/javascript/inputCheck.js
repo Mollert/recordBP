@@ -1,4 +1,5 @@
 
+// These four checks are the client side check for data entry
 const sysCheck = () => {
 	let starter = document.getElementById("systolic");
 	let insys = starter.value.trim();
@@ -23,6 +24,7 @@ const wghtCheck = () => {
 	(inwt > 60.0 && inwt < 260.0) ? (starter.style.backgroundColor = "white") : (starter.style.backgroundColor = "yellow")
 }
 
+// Button clears data from entries
 document.getElementById("clear").addEventListener("click", function() {
 	event.preventDefault();
 	document.getElementById("systolic").style.backgroundColor = "white";

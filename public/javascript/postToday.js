@@ -2,6 +2,7 @@
 const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+// Creates display text according to listed hour
 const mornAftNight = (hr)  => {
 	if (hr < 12) {
 		return "morning"; 
@@ -12,6 +13,7 @@ const mornAftNight = (hr)  => {
 	}
 }
 
+// Returns various scenario's to descibe time
 const currentTime = (hr, min)  => {
 	if (min < 10) {
 		min = "0" + min;
@@ -26,6 +28,7 @@ const currentTime = (hr, min)  => {
 	}
 }
 
+// Get time using Javascript Date library
 let dateNow = new Date();
 let hour = dateNow.getHours();
 let minute = dateNow.getMinutes();
@@ -33,6 +36,7 @@ let timeNow = currentTime(hour, minute);
 let dayOfMonth = dateNow.getDate();
 let end = "";
 
+// Selects day description due to number
 if (dayOfMonth === 1 || dayOfMonth === 21 || dayOfMonth === 31) {
 	end = "st";
 } else if (dayOfMonth === 2 || dayOfMonth === 22) {
@@ -43,6 +47,7 @@ if (dayOfMonth === 1 || dayOfMonth === 21 || dayOfMonth === 31) {
 	end = "th";
 }
 
+// Creates object to send to website via route
 let greet = {
 	"periodOfDay": mornAftNight(hour),
 	"day": daysOfWeek[dateNow.getDay()],

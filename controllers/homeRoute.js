@@ -8,6 +8,7 @@ let greet = require("../public/javascript/postToday.js");
 // To home page
 router.get("/", (req, res) => {
 
+	// Hides the two buttons for the chart
 	let populate = {
 		"goget": "none",
 		"reset": "none"

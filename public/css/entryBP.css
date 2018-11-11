@@ -27,7 +27,6 @@ body, html {
 .flexRowEntry {
 	display: flex;
 	flex-direction: row;
-/*	align-items: center;*/
 	justify-content: center;
 	height: 5rem;
 }
@@ -48,7 +47,7 @@ img {
 	width: auto;
 	margin-top: 0.0rem;
 }
-/*
+/* Animation and keyframe to make the heart pump */
 #heart {
 	animation-name: beat;
 	animation-duration: 1.8s;
@@ -67,7 +66,7 @@ img {
 		transform: scale(1);		
 	}
 }
-*/
+
 input.entry {
 	width: 4rem;
 	height: 1.6rem;
@@ -104,21 +103,3 @@ label.entry {
 	text-align: center;
 	font-size: 1.6rem;
 }
-
-
-
-
-
-/*
-#theTime {
-	margin-left: 8rem;	
-	font-size: 3rem;
-}
-*/
-
-
-/*
-@media screen and (max-width: 460px) {
-
-}
-*/
