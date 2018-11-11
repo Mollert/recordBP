@@ -6,7 +6,7 @@ const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Fri
 const mornAftNight = (hr)  => {
 	if (hr < 12) {
 		return "morning"; 
-	} else if (hr < 18) {
+	} else if (hr >= 12 && hr < 18) {
 		return "afternoon"; 
 	} else {
 		return "evening";
