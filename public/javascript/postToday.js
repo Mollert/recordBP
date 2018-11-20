@@ -14,21 +14,6 @@ const mornAftNight = (hr)  => {
 	}
 }
 
-// Returns various scenario's to descibe time
-/*const currentTime = (hr, min)  => {
-	if (min < 10) {
-		min = "0" + min;
-	}
-	if (hr < 12) {
-		return (hr + ":" + min + " AM");
-	} else if (hr === 12) {
-		return (hr + ":" + min + " PM");		
-	} else {
-		hr = hr - 12;
-		return (hr + ":" + min + " PM");		
-	}
-}*/
-
 // Returns either AM or PM
 const isAmPm = (guide) => {
 	if (guide < 12) {
@@ -41,8 +26,6 @@ const isAmPm = (guide) => {
 // Get time using Javascript Date library
 let dateNow = new Date();
 let hour = dateNow.getHours();
-//let minute = dateNow.getMinutes();
-//let timeNow = currentTime(hour, minute);
 let dayOfMonth = dateNow.getDate();
 let end = "";
 
