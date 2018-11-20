@@ -1,5 +1,6 @@
 
 const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const monthsAbbrev = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 // Creates display text according to listed hour
@@ -14,7 +15,7 @@ const mornAftNight = (hr)  => {
 }
 
 // Returns various scenario's to descibe time
-const currentTime = (hr, min)  => {
+/*const currentTime = (hr, min)  => {
 	if (min < 10) {
 		min = "0" + min;
 	}
@@ -26,13 +27,22 @@ const currentTime = (hr, min)  => {
 		hr = hr - 12;
 		return (hr + ":" + min + " PM");		
 	}
+}*/
+
+// Returns either AM or PM
+const isAmPm = (guide) => {
+	if (guide < 12) {
+		return "AM";
+	} else {
+		return "PM";
+	}
 }
 
 // Get time using Javascript Date library
 let dateNow = new Date();
 let hour = dateNow.getHours();
-let minute = dateNow.getMinutes();
-let timeNow = currentTime(hour, minute);
+//let minute = dateNow.getMinutes();
+//let timeNow = currentTime(hour, minute);
 let dayOfMonth = dateNow.getDate();
 let end = "";
 
@@ -50,10 +60,12 @@ if (dayOfMonth === 1 || dayOfMonth === 21 || dayOfMonth === 31) {
 // Creates object to send to website via route
 let greet = {
 	"periodOfDay": mornAftNight(hour),
+	"aMpM": isAmPm(dateNow.getHours),
 	"day": daysOfWeek[dateNow.getDay()],
 	"dayOfMonth": dateNow.getDate(),
 	"end": end,
-	"month": monthsOfYear[dateNow.getMonth()]
+	"month": monthsOfYear[dateNow.getMonth()],
+	"monthAbbrev": monthsAbbrev[dateNow.getMonth()],
 }
 
 module.exports = greet;

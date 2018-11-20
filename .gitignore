@@ -1,5 +1,5 @@
 node_modules
-.DS_Store
+.env
 
 
 #Ignore individual html pages I created prior to building a handlebars site

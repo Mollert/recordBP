@@ -4,7 +4,10 @@ const request = require("request");
 const exphbs = require("express-handlebars");
 const path = require("path");
 const bodyParser = require("body-parser");
+const mysql = require("mysql");
+const dotenv = require("dotenv");
 
+dotenv.config();
 
 const app = express();
 const router = express.Router();
