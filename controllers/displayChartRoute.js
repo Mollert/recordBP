@@ -5,7 +5,7 @@ const router = express.Router();
 
 const connection = require("../config/connection.js");
 
-let greet = require("../public/javascript/postToday.js");
+let dateTime = require("../public/javascript/postToday.js");
 
 // Instantiates the chart axis arrays 
 let xAxis = [];
@@ -23,6 +23,10 @@ router.post("/displayChart", (req, res) => {
 
 	let label = "";
 	let howLong = 0;
+
+	// Get time using Javascript Date library but subtract 4 hours
+	let dateNow = new Date(Date.now() - 14400000);
+
 	// Finds the length of time the user wants to see data
 	if (chartDur === "Past Week") {
 		howLong = 7;
@@ -39,13 +43,13 @@ router.post("/displayChart", (req, res) => {
 		if (error) {
 			console.log(error);
 		}
-	// Given one of the four topics and which entry, it adds the date and data into arrays
+		// Given one of the four topics and which entry, it adds the date and data into arrays
 		const loadUpArrays = (subject, ele) => {
 			let date = `${row[ele].month} ${row[ele].day}`;
 			xAxis.push(date);
 			yAxis.push(row[ele][subject]);
 		}
-	//  Main loop.  Looping through to check for valid data
+		//  Main loop.  Looping through to check for valid data
 		for (i = 0 ; i < row.length ; i++) {
 			if (!(row[i][chartSub] === "0")) {
 				if (chartTime === "ad") {
@@ -75,6 +79,8 @@ router.post("/displayChart", (req, res) => {
 		} else if (chartSub === "weight") {
 			label = "Weight";
 		}
+		// Sends current date to function which creates object to send to website via route
+		let greet = dateTime.greetPackage(dateNow);
 		// Sends information to chartData.js about chart
 		let populate = {
 			"labels": xAxis,
@@ -83,7 +89,7 @@ router.post("/displayChart", (req, res) => {
 			"goget": "block",
 			"reset": "none"
 		};
-	// Ask the HTML to show what has been created
+		// Ask the HTML to show what has been created
 		res.render("index", {greet, populate});
 	});	
 });

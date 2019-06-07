@@ -5,7 +5,7 @@ const router = express.Router();
 
 const connection = require("../config/connection.js");
 
-let greet = require("../public/javascript/postToday.js");
+let dateTime = require("../public/javascript/postToday.js");
 
 let whichMessage = 0;
 const validateMessage = ["There were no values to be added.", "I am going to add only 1 of the 3 entries.", "I am going to add only 2 of the 3 entries.", "I am going to add all 3 entries.", "An error accured and no values where added."];
@@ -48,6 +48,10 @@ const confirmWeight = (wt) => {
 // Capture data and save to database
 router.post("/saveData", (req, res) => {
 	whichMessage = 0;
+
+	// Get time using Javascript Date library but subtract 4 hours
+	let dateNow = new Date(Date.now() - 14400000);
+
 	// Sends the chocies made on the website to be checked for validity
 	let systolic = firstCheck(req.body.systolic);
 	systolic = confirmSystolic(systolic);
@@ -68,23 +72,25 @@ router.post("/saveData", (req, res) => {
 	weight = confirmWeight(weight);
 	// Breaks up long query statment	
 	let queryString = "INSERT INTO vitals (systolic, diastolic, heartrate, weight, month, day, ampm) ";
-		queryString += "VALUES ("+systolic+", "+diastolic+", "+hRate+", "+weight+", '"+greet.monthAbbrev+"', "+greet.dayOfMonth+", '"+greet.aMpM+"')";
+		queryString += "VALUES ("+systolic+", "+diastolic+", "+hRate+", "+weight+", '"+dateTime.monthsAbbrev[dateNow.getMonth()]+"', "+dateNow.getDate()+", '"+dateTime.isAmPm(dateNow.getHours())+"')";
 	// Add vitals to the database		
 	connection.query(queryString, (error, row, fields) => {
 		if (error) {
 			whichMessage = 4;
 			console.log(error);
 		}
-	// Sends message to web page giving the number of valid entries
-		let addEntries = {
-			"theMessage": validateMessage[whichMessage]
-		}
-	// Hides the two buttons for the chart
+		// Sends current date to function which creates object to send to website via route
+		let greet = dateTime.greetPackage(dateNow);
+		// Hides the two buttons for the chart
 		let populate = {
 			"goget": "none",
 			"reset": "none"
 		}
-	// Ask the HTML to show what has been created
+		// Sends message to web page giving the number of valid entries
+		let addEntries = {
+			"theMessage": validateMessage[whichMessage]
+		}
+		// Ask the HTML to show what has been created
 		res.render("index", {greet, populate, addEntries});
 	});
 });

@@ -14,6 +14,19 @@ const mornAftNight = (hr)  => {
 	}
 }
 
+// Selects day description due to number
+const tailEnd = (whatDay) => {
+	if (whatDay === 1 || whatDay === 21 || whatDay === 31) {
+		return "st";
+	} else if (whatDay === 2 || whatDay === 22) {
+		return "nd";
+	} else if (whatDay === 3 || whatDay === 23) {
+		return "rd";
+	} else {
+		return "th";
+	}
+}
+
 // Returns either AM or PM
 const isAmPm = (guide) => {
 	if (guide < 12) {
@@ -23,32 +36,16 @@ const isAmPm = (guide) => {
 	}
 }
 
-// Get time using Javascript Date library
-let dateNow = new Date();
-let hour = dateNow.getHours();
-let dayOfMonth = dateNow.getDate();
-let end = "";
-
-// Selects day description due to number
-if (dayOfMonth === 1 || dayOfMonth === 21 || dayOfMonth === 31) {
-	end = "st";
-} else if (dayOfMonth === 2 || dayOfMonth === 22) {
-	end = "nd";
-} else if (dayOfMonth === 3 || dayOfMonth === 23) {
-	end = "rd";
-} else {
-	end = "th";
-}
-
 // Creates object to send to website via route
-let greet = {
-	"periodOfDay": mornAftNight(hour),
-	"aMpM": isAmPm(dateNow.getHours),
-	"day": daysOfWeek[dateNow.getDay()],
-	"dayOfMonth": dateNow.getDate(),
-	"end": end,
-	"month": monthsOfYear[dateNow.getMonth()],
-	"monthAbbrev": monthsAbbrev[dateNow.getMonth()],
+let greetPackage = (rightNow) => {
+	return {
+	"periodOfDay": mornAftNight(rightNow.getHours()),	
+	"day": daysOfWeek[rightNow.getDay()],
+	"dayOfMonth": rightNow.getDate(),
+	"end": tailEnd(rightNow.getDate()),
+	"month": monthsOfYear[rightNow.getMonth()]
+	};
 }
 
-module.exports = greet;
+
+module.exports = { monthsOfYear, monthsAbbrev, daysOfWeek, mornAftNight, tailEnd, isAmPm, greetPackage };
