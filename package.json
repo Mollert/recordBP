@@ -20,7 +20,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-handlebars": "^5.3.2",
     "minimatch": "^5.1.0",
     "minimist": "^1.2.5",
